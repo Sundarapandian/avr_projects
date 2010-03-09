@@ -1,0 +1,4 @@
+This project involves interfacing an 16x2 Alpha Numeric LCD with AVR Main board. The following are the list of reference documents
+1. LCD board document (Datasheets/C1627A.pdf)
+2. LCD Interface SoC datasheet (Datasheets/ks0066u_LCDc.pdf)
+3. Refer to README in AVR main board project area

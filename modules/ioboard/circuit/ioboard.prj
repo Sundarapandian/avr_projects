@@ -1,0 +1,3 @@
+elements-dir ./symbols
+schematics ioboard01.sch ioboard02.sch
+output-name ioboard
