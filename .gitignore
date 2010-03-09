@@ -24,7 +24,6 @@
 *.lst
 *.lss
 *.map
-*.sym
 *.eep
 *.so
 *.ly1
