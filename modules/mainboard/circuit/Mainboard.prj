@@ -1,3 +1,3 @@
-elements-dir /home/sundar/project/Hobby/gEDA-Resource/Footprint
+elements-dir ./resources
 schematics mainboard01.sch mainboard02.sch
 output-name Mainboard

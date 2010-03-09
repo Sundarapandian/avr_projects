@@ -1,0 +1,1 @@
+../../../../resources/footprints/pwrjack-2.1-5.5-3pin.fp
