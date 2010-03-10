@@ -1,0 +1,3 @@
+elements-dir ./resources
+schematics xbee.sch
+output-name xbee
