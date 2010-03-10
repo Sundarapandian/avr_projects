@@ -1,4 +1,4 @@
-v 20080127 1
+v 20081231 1
 C 40200 39800 0 0 0 title-bordered-A3.sym
 C 43900 40800 1 0 0 ATmega323-1.sym
 {
@@ -387,14 +387,14 @@ T 43300 40800 5 10 0 1 0 0 1
 footprint=ACY300
 }
 C 43200 40100 1 0 0 gnd-1.sym
-C 40600 49900 1 0 0 switch-pushbutton-no-1.sym
+C 41600 49900 1 0 1 switch-pushbutton-no-1.sym
 {
-T 41000 50200 5 10 1 1 0 0 1
+T 41200 50200 5 10 1 1 0 6 1
 refdes=S101
-T 41000 50500 5 10 0 0 0 0 1
+T 41200 50500 5 10 0 0 0 6 1
 device=SWITCH_PUSHBUTTON_NO
-T 40600 49900 5 10 0 1 0 0 1
-footprint=HEADER2_2
+T 41600 49900 5 10 0 1 0 6 1
+footprint=reset_button
 }
 N 42400 49900 42400 47800 4
 N 42400 47800 41600 47800 4

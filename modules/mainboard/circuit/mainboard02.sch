@@ -239,7 +239,7 @@ device=Dual_Two_Way_Switch
 T 43010 45600 5 10 1 1 0 0 1
 refdes=S201
 T 43110 46100 5 10 0 0 0 0 1
-footprint=push_button001
+footprint=pwr_button
 T 43500 47500 5 10 0 0 0 0 1
 symversion=1.0
 }
