@@ -43,6 +43,9 @@ modules/mainboard/src/picoos
 *.csv
 *.bom
 *.bak*
+*.cnc
+*.gbr
+*.new.pcb
 
 # Exceptions
 !.gitignore
