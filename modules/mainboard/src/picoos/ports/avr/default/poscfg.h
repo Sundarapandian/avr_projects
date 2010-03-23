@@ -71,7 +71,7 @@
  * The value for this definition must be a power of two and can
  * not exceed the count of bits set by ::MVAR_BITS.
  */
-#define POSCFG_TASKS_PER_PRIO    1 
+#define POSCFG_TASKS_PER_PRIO    1
 
 /** Maximum count of tasks.
  * This define sets the maximum count of task data structures which can be
@@ -126,7 +126,7 @@
  * dynamically allocate memory for additional timers if the volume of timers
  * defined by ::POSCFG_MAX_TIMER is exhausted.
  */
-#define POSCFG_MAX_TIMER         1 
+#define POSCFG_MAX_TIMER         1
 
 /** Set scheduling scheme.
  * The pico]OS supports two types of scheduling:<br>
@@ -483,7 +483,7 @@
  * If this definition is set to 1, the function ::posInstallIdleTaskHook
  * will be added to the user API.
  */
-#define POSCFG_FEATURE_IDLETASKHOOK  0
+#define POSCFG_FEATURE_IDLETASKHOOK  1
 
 /** Enable atomic variable support.
  * If this definition is set to 1, the functions needed for accessing

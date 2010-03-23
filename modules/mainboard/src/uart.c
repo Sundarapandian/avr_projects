@@ -15,6 +15,9 @@ static POSTASK_t rx_task_id; /* Rx Task */
 static POSTIMER_t htmr_rx; /* Timer Handler */
 static char *index;
 
+#define UART_RX_BUF_SIZE  32
+static char * uart_buf[UART_RX_BUF_SIZE];
+static unsigned char head, tail, isempty, isfull;
 /**
  * UART transmit interrupt service routine
  **/
@@ -29,6 +32,7 @@ static void usart_txrdy(void)
 }
 PICOOS_SIGNAL(SIG_USART_DATA, usart_txrdy)
 
+#if 0
 int uart_rx(char * buf, int size)
 {
 	int cnt = 0;
@@ -43,6 +47,8 @@ int uart_rx(char * buf, int size)
 		if (!buf[cnt - 1] || cnt == size)
 	}
 }
+#endif
+
 /**
  * Bluetooth interrupt service routine
  **/
@@ -79,9 +85,6 @@ static void uart_rx(void)
 }
 PICOOS_SIGNAL(SIG_USART_RECV, uart_rx)
 
-#define UART_RX_BUF_SIZE  32
-static char * uart_buf[UART_RX_BUF_SIZE];
-static unsigned char head, tail, isempty, isfull;
 #if 0
 /**
  * Task that posts UART messages to receiving task
@@ -123,7 +126,7 @@ void uart_init(POSTASK_t rx_tid)
 	sem_res = posSemaCreate(1);
 	tmr_rx = posSemaCreate(0);
 	rx_task_id = rx_tid;
-	posTaskCreate(rx_task, NULL, 4);
+//	posTaskCreate(rx_task, NULL, 4);
 
 	/* Initialize the Rx queue */
 	isfull = 0;
