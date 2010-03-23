@@ -71,7 +71,7 @@
  * The value for this definition must be a power of two and can
  * not exceed the count of bits set by ::MVAR_BITS.
  */
-#define POSCFG_TASKS_PER_PRIO    8 
+#define POSCFG_TASKS_PER_PRIO    1 
 
 /** Maximum count of tasks.
  * This define sets the maximum count of task data structures which can be
@@ -99,7 +99,7 @@
  * dynamically allocate memory for additional events if the volume of events
  * defined by ::POSCFG_MAX_EVENTS is exhausted.
  */
-#define POSCFG_MAX_EVENTS       4
+#define POSCFG_MAX_EVENTS       10
 
 /** Maximum count of message buffers.
  * This definition sets the maximum count of message buffers that can be
@@ -126,7 +126,7 @@
  * dynamically allocate memory for additional timers if the volume of timers
  * defined by ::POSCFG_MAX_TIMER is exhausted.
  */
-#define POSCFG_MAX_TIMER         4 
+#define POSCFG_MAX_TIMER         1 
 
 /** Set scheduling scheme.
  * The pico]OS supports two types of scheduling:<br>
@@ -153,7 +153,7 @@
  * No task is prefered. If a task gives of processing time, or its time slice
  * has expired, the next task at this priority is scheduled.
  */
-#define POSCFG_ROUNDROBIN        1
+#define POSCFG_ROUNDROBIN        0
 
 /** Set soft multitasking.
  * By setting this define to 1, it is possible to soften the hard real time
@@ -168,7 +168,7 @@
  * The purpose of soft multitasking is to reduce expensive context switches
  * to a minimum to get more processing time for the main work.
  */
-#define POSCFG_SOFT_MTASK        1
+#define POSCFG_SOFT_MTASK        0
 
 /** Soft multitasking context switch combine counter trigger threshold.
  * Sets the number how often an event must be triggered to initiate a context
@@ -323,7 +323,7 @@
  * If this definition is set to 1, the function ::posTaskYield will
  * be included into the pico]OS kernel.
  */
-#define POSCFG_FEATURE_YIELD         1
+#define POSCFG_FEATURE_YIELD         0
 
 /** Include function ::posTaskSleep.
  * If this definition is set to 1, the function ::posTaskSleep will
@@ -335,25 +335,25 @@
  * If this definition is set to 1, the function ::posTaskExit will
  * be included into the pico]OS kernel.
  */
-#define POSCFG_FEATURE_EXIT          1
+#define POSCFG_FEATURE_EXIT          0
 
 /** Include function ::posTaskGetPriority.
  * If this definition is set to 1, the function ::posTaskGetPriority will
  * be included into the pico]OS kernel.
  */
-#define POSCFG_FEATURE_GETPRIORITY   1
+#define POSCFG_FEATURE_GETPRIORITY   0
 
 /** Include function ::posTaskSetPriority.
  * If this definition is set to 1, the function ::posTaskSetPriority will
  * be included into the pico]OS kernel.
  */
-#define POSCFG_FEATURE_SETPRIORITY   1
+#define POSCFG_FEATURE_SETPRIORITY   0
 
 /** Include semaphore functions.
  * If this definition is set to 1, the semaphore functions are
  * added to the user API.
  */
-#define POSCFG_FEATURE_SEMAPHORES    1
+#define POSCFG_FEATURE_SEMAPHORES    0
 
 /** Include function ::posSemaDestroy.
  * If this definition is set to 1, the function ::posSemaDestroy will
@@ -399,7 +399,7 @@
  * If this definition is set to 1, the function ::posTaskUnused will
  * be included into the pico]OS kernel.
  */
-#define POSCFG_FEATURE_TASKUNUSED    1
+#define POSCFG_FEATURE_TASKUNUSED    0
 
 /** Include message box functions.
  * If this definition is set to 1, the message box functions are
@@ -450,7 +450,7 @@
  * If this definition is set to 1, the flags functions are
  * added to the user API.
  */
-#define POSCFG_FEATURE_FLAGS         1
+#define POSCFG_FEATURE_FLAGS         0
 
 /** Include function ::posFlagDestroy.
  * If this definition is set to 1, the function ::posFlagDestroy will

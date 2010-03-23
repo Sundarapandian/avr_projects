@@ -40,7 +40,7 @@ include $(RELROOT)make/common.mak
 # --------------------------------------------------------------------------
 
 # Set target file name
-TARGET = picoos
+TARGET = libpicoos
 
 # Set pico]OS core source files
 FILES_CORE = \
