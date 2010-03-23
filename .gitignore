@@ -28,9 +28,7 @@
 *.so
 *.ly1
 *.out
-
-# External dowloaded stuff
-modules/mainboard/src/picoos
+*.exe
 
 # generated circuit files
 *.*-
