@@ -1,7 +1,7 @@
-# release: pcb 20081128
-# date:    Thu Mar 11 11:38:42 2010
-# user:    asundar ()
-# host:    DCU-Server.wbi.nxp.com
+# release: pcb.x 20080202
+# date:    Tue Mar 16 18:00:04 2010
+# user:    sundar (Sundarapandian Andithevar,,,)
+# host:    slax.example.net
 
 # To read pcb files, the pcb version (or the cvs source date) must be >= the file version
 FileVersion[20070407]
@@ -1221,6 +1221,7 @@ Layer(1 "solder")
 	Line[165236 80236 134236 80236 3000 6800 "clearline"]
 	Line[134236 80236 86500 32500 3000 6800 "clearline"]
 	Line[86500 32500 86500 5500 3000 6800 "clearline"]
+	Text[138500 220500 0 166 "XBee V1.0" "clearline,auto"]
 	Polygon("clearpoly")
 	(
 		[190500 226000] [0 226000] [0 0] [190500 0] 
