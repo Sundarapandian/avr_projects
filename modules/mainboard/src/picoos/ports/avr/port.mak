@@ -44,7 +44,7 @@ GENERIC_FINDBIT = 0
 
 # Define extensions
 EXT_C   = .c
-EXT_ASM = .s
+EXT_ASM = .S
 EXT_INT = .i
 EXT_OBJ = .o
 EXT_LIB = .a

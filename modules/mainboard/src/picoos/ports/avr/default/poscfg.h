@@ -1,6 +1,6 @@
 /*
  *  Copyright (c) 2004-2006, Dennis Kuschel.
- *  All rights reserved. 
+ *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions
@@ -13,7 +13,7 @@
  *      documentation and/or other materials provided with the distribution.
  *   3. The name of the author may not be used to endorse or promote
  *      products derived from this software without specific prior written
- *      permission. 
+ *      permission.
  *
  *  THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
  *  OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -273,7 +273,7 @@
  * inlined instead of doing subroutine calls. Note that the fastest possible
  * code is generated when also the define ::POSCFG_SMALLCODE is set to 0.
  */
-#define POSCFG_FASTCODE          1 
+#define POSCFG_FASTCODE          1
 
 /** Configure code size.
  * Set this define to 1 to get a small code. This only touches some pico]OS
@@ -335,7 +335,7 @@
  * If this definition is set to 1, the function ::posTaskExit will
  * be included into the pico]OS kernel.
  */
-#define POSCFG_FEATURE_EXIT          0
+#define POSCFG_FEATURE_EXIT          1
 
 /** Include function ::posTaskGetPriority.
  * If this definition is set to 1, the function ::posTaskGetPriority will
