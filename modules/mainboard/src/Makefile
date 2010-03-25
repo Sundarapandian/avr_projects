@@ -372,9 +372,10 @@ ALL_ASFLAGS = -mmcu=$(MCU) -I. -x assembler-with-cpp $(ASFLAGS)
 
 # Default target.
 all: $(PICOOS_LIB_PATH)/libpicoos.a begin gccversion sizebefore build sizeafter end 
-	@mkdir ../lib > /dev/null 2>&1
-	@ln -s $(shell readlink -f $(PICOOS_LIB_PATH)/libpicoos.a) ../lib/libpicoos.a
-	@ln -s $(shell readlink -f libmainboard.a) ../lib/libmainboard.a
+install:
+	@-mkdir ../lib > /dev/null 2>&1
+	@-ln -s $(shell readlink -f $(PICOOS_LIB_PATH)/libpicoos.a) ../lib/libpicoos.a > /dev/null 2>&1
+	@-ln -s $(shell readlink -f libmainboard.a) ../lib/libmainboard.a >/dev/null 2>&1
 $(PICOOS_LIB_PATH)/libpicoos.a:
 	$(MAKE) -C $(PICOOS_HOME) PORT=avr MCU=$(MCU) F_CPU=$(F_CPU) OPT=$(OPT) BUILD=$(BUILD)
 
@@ -571,6 +572,7 @@ clean: begin clean_list end
 clean_list :
 	@echo
 	@echo $(MSG_CLEANING)
+	$(REMOVE) *.a
 	$(REMOVE) $(TARGET).hex
 	$(REMOVE) $(TARGET).eep
 	$(REMOVE) $(TARGET).cof

@@ -25,7 +25,7 @@ MCU = atmega32
 F_CPU = 8000000
 
 # Baudrates for various UARTs
-BAUDRATES = -DBAUD=115200UL
+BAUDRATES = -DBAUD=9600UL
 
 # Build type RELEASE/DEBUG
 BUILD = DEBUG

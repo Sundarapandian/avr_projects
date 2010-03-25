@@ -353,7 +353,7 @@
  * If this definition is set to 1, the semaphore functions are
  * added to the user API.
  */
-#define POSCFG_FEATURE_SEMAPHORES    0
+#define POSCFG_FEATURE_SEMAPHORES    1
 
 /** Include function ::posSemaDestroy.
  * If this definition is set to 1, the function ::posSemaDestroy will
@@ -373,21 +373,21 @@
  * If this definition is set to 1, the mutex functions are
  * added to the user API.
  */
-#define POSCFG_FEATURE_MUTEXES       1
+#define POSCFG_FEATURE_MUTEXES       0
 
 /** Include function ::posMutexDestroy.
  * If this definition is set to 1, the function ::posMutexDestroy will
  * be included into the pico]OS kernel. Note that also
  * ::POSCFG_FEATURE_MUTEXES must be set to 1.
  */
-#define POSCFG_FEATURE_MUTEXDESTROY  1
+#define POSCFG_FEATURE_MUTEXDESTROY  0
 
 /** Include function ::posMutexTryLock.
  * If this definition is set to 1, the function ::posMutexTryLock will
  * be included into the pico]OS kernel. Note that also
  * ::POSCFG_FEATURE_MUTEXES must be set to 1.
  */
-#define POSCFG_FEATURE_MUTEXTRYLOCK  1
+#define POSCFG_FEATURE_MUTEXTRYLOCK  0
 
 /** Include function ::posTaskGetCurrent.
  * If this definition is set to 1, the function ::posTaskGetCurrent will
