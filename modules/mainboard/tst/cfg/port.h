@@ -109,7 +109,7 @@
  * If your machine configuration does not support interruptable ISRs,
  * you can set this define to 0 to save some execution time in ISRs.
  */
-#define POSCFG_ISR_INTERRUPTABLE 1
+#define POSCFG_ISR_INTERRUPTABLE 0
 
 /** Set the mechanism of stack memory handling.
  * There are three types of stack memory handling defined.<br>

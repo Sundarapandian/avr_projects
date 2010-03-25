@@ -1,10 +1,10 @@
 #include <avr/interrupt.h>
 #include <avr/io.h>
 #include <string.h>
-#include <util/setbaud.h>
 #include <picoos.h>
 
-#include "uart.h"
+#include "inc/uart.h"
+#include <util/setbaud.h>
 
 #define DISABLE_TXE_INTERRUPT UCSRB &= ~(1 << UDRIE)
 #define ENABLE_TXE_INTERRUPT  UCSRB |= 1 << UDRIE

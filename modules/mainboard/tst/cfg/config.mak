@@ -1,5 +1,10 @@
 ########## ALL THE CONFIGURABLE PARAMETERS ###############
 
+#directories
+PRJ_DIR := $(TOP_DIR)/mainboard/tst
+DIR_CONFIG := $(PRJ_DIR)/cfg
+OUTPUT_DIR = $(PRJ_DIR)/out
+
 # MCU name
 MCU = atmega32
 
