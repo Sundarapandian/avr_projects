@@ -2,6 +2,7 @@ OBJDIR := $(OUTPUT_DIR)/$(TARGET)
 
 VPATH = $(SRC_DIRS)
 
+CFLAGS += -I$(TOP_DIR)/$(TARGET)/inc
 # Define all object files.
 OBJ = $(SRC:%.c=$(OBJDIR)/%.o) $(CXXSRC:%.cpp=$(OBJDIR)/%.o) $(ASRC:%.S=$(OBJDIR)/%.o)
 
@@ -17,7 +18,7 @@ elf: $(OBJDIR) $(OUTPUT_DIR)/bin $(OBJ) $(ELFTARGET)
 %.elf: $(OBJ)
 	@echo
 	@echo "     LD        $@"
-	$(CC) $(LDFLAGS) $^ --output $@ $(LIBS)
+	@$(CC) $(LDFLAGS) $^ --output $@ $(LIBS)
 
 # Create library from object files.
 .SECONDARY : $(LIBTARGET)
@@ -80,8 +81,5 @@ $(shell mkdir $(OBJDIR) 2>/dev/null)
 
 clean:
 	@echo Cleaning work area
-	-@rm -f $(LIBTARGET) $(ELFTARGET) $(OBJS) $(CLEAN_LIST)
+	-@rm -f $(LIBTARGET) $(ELFTARGET) $(OBJS) $(CLEAN_LIST) $(OBJDIR)/*
 
-distclean:
-	@echo Distcleaning
-	-@rm -Rf $(OBJDIR)

@@ -139,41 +139,41 @@ endif
 # Make subdirectories
 ifneq '$(strip $(DIR_OUTPUT))' ''
 $(DIR_OUTPUT):
-	-$(MKDIR) $@
+	@-$(MKDIR) $@
 endif
 ifneq '$(strip $(DIR_OBJB))' ''
 ifneq '$(DIR_OBJB)' '$(DIR_OUTPUT)'
 $(DIR_OBJB): | $(DIR_OUTPUT)
-	-$(MKDIR) $@
+	@-$(MKDIR) $@
 endif
 endif
 ifneq '$(strip $(DIR_OBJP))' ''
 $(DIR_OBJP): | $(DIR_OBJB)
-	-$(MKDIR) $@
+	@-$(MKDIR) $@
 endif
 ifneq '$(strip $(DIR_OBJT))' ''
 $(DIR_OBJT): | $(DIR_OBJP)
-	-$(MKDIR) $@
+	@-$(MKDIR) $@
 endif
 $(DIR_OBJ): | $(DIR_OBJT) $(DIR_OBJP)
-	-$(MKDIR) $@
+	@-$(MKDIR) $@
 #
 ifneq '$(DIR_LIB)' '$(DIR_OBJ)'
 ifneq '$(DIR_LIBB)' '$(DIR_OUTPUT)'
 ifneq '$(strip $(DIR_LIBB))' ''
 $(DIR_LIBB): | $(DIR_OUTPUT)
-	-$(MKDIR) $@
+	@-$(MKDIR) $@
 endif
 endif
 ifneq '$(DIR_LIBP)' '$(DIR_OBJP)'
 ifneq '$(strip $(DIR_LIBP))' ''
 $(DIR_LIBP): | $(DIR_LIBB)
-	-$(MKDIR) $@
+	@-$(MKDIR) $@
 endif
 endif
 ifneq '$(DIR_LIB)' '$(DIR_OBJP)'
 $(DIR_LIB): | $(DIR_LIBP)
-	-$(MKDIR) $@
+	@-$(MKDIR) $@
 endif
 endif
 #
@@ -181,17 +181,17 @@ ifneq '$(DIR_OUT)' '$(DIR_LIB)'
 ifneq '$(DIR_OUTB)' '$(DIR_OUTPUT)'
 ifneq '$(strip $(DIR_OUTB))' ''
 $(DIR_OUTB): | $(DIR_OUTPUT)
-	-$(MKDIR) $@
+	@-$(MKDIR) $@
 endif
 endif
 ifneq '$(DIR_OUTP)' '$(DIR_OBJP)'
 ifneq '$(strip $(DIR_OUTP))' ''
 $(DIR_OUTP): | $(DIR_OUTB)
-	-$(MKDIR) $@
+	@-$(MKDIR) $@
 endif
 endif
 $(DIR_OUT): | $(DIR_OUTP)
-	-$(MKDIR) $@
+	@-$(MKDIR) $@
 endif
 
 # ---------------------------------------------------------------------------
@@ -267,21 +267,29 @@ else
 
 # Compile: create object files from C source files
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC1)%$(EXT_C) $(COMMONDEP) | $(DIR_OBJ)
-	$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
+	@echo "     CC        $<"
+	@$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC2)%$(EXT_C) $(COMMONDEP) | $(DIR_OBJ)
-	$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
+	@echo "     CC        $<"
+	@$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC3)%$(EXT_C) $(COMMONDEP) | $(DIR_OBJ)
-	$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
+	@echo "     CC        $<"
+	@$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC4)%$(EXT_C) $(COMMONDEP) | $(DIR_OBJ)
-	$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
+	@echo "     CC        $<"
+	@$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC5)%$(EXT_C) $(COMMONDEP) | $(DIR_OBJ)
-	$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
+	@echo "     CC        $<"
+	@$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC6)%$(EXT_C) $(COMMONDEP) | $(DIR_OBJ)
-	$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
+	@echo "     CC        $<"
+	@$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC7)%$(EXT_C) $(COMMONDEP) | $(DIR_OBJ)
-	$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
+	@echo "     CC        $<"
+	@$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC8)%$(EXT_C) $(COMMONDEP) | $(DIR_OBJ)
-	$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
+	@echo "     CC        $<"
+	@$(CC) $(call make_cflags,$@) $(CINCS) $(CDEFS) $(call adjpath,$<)
 
 endif
 
@@ -329,21 +337,29 @@ else
 
 # Assemble: create object files from assembler source files.
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC1)%$(EXT_ASM) $(COMMONDEP) | $(DIR_OBJ)
-	$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
+	@echo "     AS        $<"
+	@$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC2)%$(EXT_ASM) $(COMMONDEP) | $(DIR_OBJ)
-	$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
+	@echo "     AS        $<"
+	@$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC3)%$(EXT_ASM) $(COMMONDEP) | $(DIR_OBJ)
-	$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
+	@echo "     AS        $<"
+	@$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC4)%$(EXT_ASM) $(COMMONDEP) | $(DIR_OBJ)
-	$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
+	@echo "     AS        $<"
+	@$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC5)%$(EXT_ASM) $(COMMONDEP) | $(DIR_OBJ)
-	$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
+	@echo "     AS        $<"
+	@$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC6)%$(EXT_ASM) $(COMMONDEP) | $(DIR_OBJ)
-	$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
+	@echo "     AS        $<"
+	@$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC7)%$(EXT_ASM) $(COMMONDEP) | $(DIR_OBJ)
-	$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
+	@echo "     AS        $<"
+	@$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
 $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC8)%$(EXT_ASM) $(COMMONDEP) | $(DIR_OBJ)
-	$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
+	@echo "     AS        $<"
+	@$(AS) $(call make_asflags,$@) $(AINCS) $(ADEFS) $(call adjpath,$<)
 
 endif
 

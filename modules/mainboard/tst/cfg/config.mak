@@ -3,7 +3,7 @@
 #directories
 PRJ_DIR := $(TOP_DIR)/mainboard/tst
 DIR_CONFIG := $(PRJ_DIR)/cfg
-OUTPUT_DIR = $(PRJ_DIR)/out
+OUTPUT_DIR = $(PRJ_DIR)/build
 
 # MCU name
 MCU = atmega32
@@ -33,7 +33,7 @@ F_CPU = 8000000
 BAUDRATES = -DBAUD=9600UL
 
 # Build type RELEASE/DEBUG
-BUILD = DEBUG
+BUILD = RELEASE
 
 # Optimization level, can be [0, 1, 2, 3, s]. 
 #     0 = turn off optimization. s = optimize for size.
@@ -45,5 +45,7 @@ OPT = 2
 #     Native formats for AVR-GCC's -g are dwarf-2 [default] or stabs.
 #     AVR Studio 4.10 requires dwarf-2.
 #     AVR [Extended] COFF format requires stabs, plus an avr-objcopy run.
-DEBUG = dwarf-2
+DEBUG   = dwarf-2
 
+PORT    = avr
+EXT_ASM = .S

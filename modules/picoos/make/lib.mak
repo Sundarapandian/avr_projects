@@ -72,7 +72,8 @@ TARGETLIB = $(DIR_LIB)/$(TARGET)$(EXT_LIB)
 AOBJS = $(addprefix $(OPT_AR_ADD),$(OBJ))
 
 $(TARGETLIB): $(OBJ) $(COMMONDEP) $(SRC_OBJ) | $(DIR_LIB)
-	$(AR) $(ARFLAGS)$(call adjpath,$@) $(call adjpath,$(AOBJS) $(SRC_OBJ))
+	@echo "     AR        $@"
+	@$(AR) $(ARFLAGS)$(call adjpath,$@) $(call adjpath,$(AOBJS) $(SRC_OBJ))
 
 # ---------------------------------------------------------------------------
 

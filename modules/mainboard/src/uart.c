@@ -3,7 +3,7 @@
 #include <string.h>
 #include <picoos.h>
 
-#include "inc/uart.h"
+#include "uart.h"
 #include <util/setbaud.h>
 
 #define DISABLE_TXE_INTERRUPT UCSRB &= ~(1 << UDRIE)
