@@ -16,6 +16,7 @@ void led_blink_task(void *ignore)
 }
 
 char uart_buf[40]="Hello World\n";
+char uart_rx_buf[40];
 void uart_tx_test(void * ignore)
 {
 	while (1) {
@@ -27,7 +28,8 @@ void uart_tx_test(void * ignore)
 void uart_rx_test(void * ignore)
 {
 	while (1) {
-		uart_gets(uart_buf);
+		uart_gets(uart_rx_buf);
+		strcpy(uart_buf, uart_rx_buf);
 	}
 }
 void app_main(void *ignore)

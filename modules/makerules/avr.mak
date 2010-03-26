@@ -25,6 +25,12 @@ CXXFLAGS += -DF_CPU=$(F_CPU)UL -mmcu=$(MCU)
 
 LIBS += $(foreach i,$(AVR_LIBS),-l$i)
 
+ifeq '$(BUILD)' 'DEBUG'
+LDFLAGS += -L$(OUTPUT_DIR)/avr-deb/lib
+else
+LDFLAGS += -L$(OUTPUT_DIR)/avr-rel/lib
+endif
+
 all: $(AVR_LIBS) $(TYPE)
 include $(TOP_DIR)/makerules/common.mak
 

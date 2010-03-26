@@ -27,7 +27,7 @@ MCU = atmega32
 #         F_CPU = 16000000
 #         F_CPU = 18432000
 #         F_CPU = 20000000
-F_CPU = 8000000
+F_CPU = 1000000
 
 # Baudrates for various UARTs
 BAUDRATES = -DBAUD=9600UL
@@ -41,17 +41,11 @@ BUILD = RELEASE
 OPT = 2
 
 
-# Debugging format.
-#     Native formats for AVR-GCC's -g are dwarf-2 [default] or stabs.
-#     AVR Studio 4.10 requires dwarf-2.
-#     AVR [Extended] COFF format requires stabs, plus an avr-objcopy run.
-
-
-# The following entries need not be changed by users
-DEBUG   = dwarf-2
-
 PORT    = avr
 EXT_ASM = .S
+
+# UART termination char for getchar!
+CFLAGS += -DUART_TCHAR="'\r'"
 
 ifeq '$(BUILD)' 'DEBUG'
 CFLAGS += -DF_CPU=$(F_CPU)UL -O0 -gstabs
