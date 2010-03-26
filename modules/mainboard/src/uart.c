@@ -13,7 +13,7 @@ static struct {
 	uint8_t buf[UART_BUF_SIZE];
 	volatile uint8_t head;
 	volatile uint8_t tail;
-	volatile uint8_t empty;
+	volatile uint8_t full;
 	POSSEMA_t lock;
 }ttx,*tx=&ttx,trx,*rx=&trx;
 
@@ -57,15 +57,15 @@ int uart_getchar_timeout(uint16_t timeout)
 	if (posSemaWait(rx->lock, timeout) != E_OK) return -1;
 	ch = (int) rx->buf[rx->tail];
 	rx->tail = (rx->tail + 1) & (UART_BUF_SIZE - 1);
-	if (rx->tail == rx->head) rx->empty = 1;
-	return 0;
+	rx->full = 0;
+	return ch;
 }
 
 static void uart_rx(void)
 {
 	uint8_t ch;
 	ch = UDR;
-	if (!rx->empty && rx->head == rx->tail) {
+	if (rx->full) {
 		/* TODO: Handle Serious buffer
 		 * Overflow problem. Currently
 		 * discarding rx data */
@@ -74,7 +74,7 @@ static void uart_rx(void)
 	rx->buf[rx->head] = ch;
 	rx->head = (rx->head + 1) & (UART_BUF_SIZE - 1);
 	posSemaSignal(rx->lock);
-	rx->empty = 0;
+	if (rx->head == rx->tail) rx->full = 1;
 }
 PICOOS_SIGNAL(SIG_USART_RECV, uart_rx)
 
