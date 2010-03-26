@@ -45,7 +45,16 @@ OPT = 2
 #     Native formats for AVR-GCC's -g are dwarf-2 [default] or stabs.
 #     AVR Studio 4.10 requires dwarf-2.
 #     AVR [Extended] COFF format requires stabs, plus an avr-objcopy run.
+
+
+# The following entries need not be changed by users
 DEBUG   = dwarf-2
 
 PORT    = avr
 EXT_ASM = .S
+
+ifeq '$(BUILD)' 'DEBUG'
+CFLAGS += -DF_CPU=$(F_CPU)UL -O0 -gstabs
+else
+CFLAGS += -DF_CPU=$(F_CPU)UL -O$(OPT)
+endif

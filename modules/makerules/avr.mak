@@ -15,11 +15,6 @@ REMOVEDIR = rm -rf
 # Place -D or -U options here for C sources
 CFLAGS  += -mmcu=$(MCU) -I$(DIR_CONFIG) -I.
 CFLAGS  += $(foreach i,$(AVR_LIBS),-I$(TOP_DIR)/$i/inc)
-ifeq '$(BUILD)' 'DEBUG'
-CFLAGS += -DF_CPU=$(F_CPU)UL -O0 -gstabs
-else
-CFLAGS += -DF_CPU=$(F_CPU)UL -O$(OPT)
-endif
 
 # Place -D or -U options here for ASM sources
 ASFLAGS += -DF_CPU=$(F_CPU) -mmcu=$(MCU)
