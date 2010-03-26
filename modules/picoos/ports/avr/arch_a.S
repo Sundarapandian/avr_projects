@@ -40,6 +40,9 @@
 // r22 = rrOffset
 p_pos_findbit:
          mov    r18, r24
+#if POSCFG_ROUNDROBIN == 0
+         eor    r22, r22
+#endif
          mov    r19, r22
 
          inc    r19
