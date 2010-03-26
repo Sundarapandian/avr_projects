@@ -82,7 +82,7 @@ PICOOS_SIGNAL(SIG_USART_RECV, uart_rx)
 /**
  * Initialize the UART and create the necessary sync.
  **/
-void uart_init(POSTASK_t rx_tid)
+void uart_init(void)
 {
 	/* Initialize the UART Registers */
 	UBRRL = UBRRL_VALUE;

@@ -24,6 +24,8 @@ extern "C" {
 	int uart_getchar_timeout(uint16_t tout);
 	int uart_putchar(uint8_t ch);
 	int uart_puts(const char *s);
+	void uart_init(void);
+
 #ifdef __cplusplus
 }
 #endif

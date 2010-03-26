@@ -253,7 +253,7 @@
 /**
  * Defines the crystal clock in HZ
  */
-#define CRYSTAL_CLOCK         8000000UL
+#define CRYSTAL_CLOCK         F_CPU
 
 /** @} */
 
@@ -360,7 +360,7 @@
  * be included into the pico]OS kernel. Note that also
  * ::POSCFG_FEATURE_SEMAPHORES must be set to 1.
  */
-#define POSCFG_FEATURE_SEMADESTROY   1
+#define POSCFG_FEATURE_SEMADESTROY   0
 
 /** Include function ::posSemaWait.
  * If this definition is set to 1, the function ::posSemaWait will
