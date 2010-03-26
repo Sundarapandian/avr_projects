@@ -10,7 +10,7 @@
 #define ENABLE_TXE_INTERRUPT  UCSRB |= 1 << UDRIE
 
 static struct {
-	uint8_t buf[_BV(UART_BUF_SIZE)];
+	uint8_t buf[UART_BUF_SIZE];
 	volatile uint8_t head;
 	volatile uint8_t tail;
 	volatile uint8_t empty;
@@ -27,7 +27,7 @@ int uart_putchar(uint8_t ch)
 {
 	posSemaGet(tx->lock);
 	tx->buf[tx->head] = ch;
-	tx->head = (tx->head + 1) & (_BV(UART_BUF_SIZE) - 1);
+	tx->head = (tx->head + 1) & (UART_BUF_SIZE - 1);
 	ENABLE_TXE_INTERRUPT;
 	return 0;
 }
@@ -37,7 +37,7 @@ int uart_putchar(uint8_t ch)
 static void usart_txrdy(void)
 {
 	UDR = tx->buf[tx->tail];
-	tx->tail = (tx->tail + 1) & (_BV(UART_BUF_SIZE) - 1);
+	tx->tail = (tx->tail + 1) & (UART_BUF_SIZE - 1);
 	if (tx->tail == tx->head) DISABLE_TXE_INTERRUPT;
 	posSemaSignal(tx->lock);
 }
@@ -56,7 +56,7 @@ int uart_getchar_timeout(uint16_t timeout)
 	int ch;
 	if (posSemaWait(rx->lock, timeout) != E_OK) return -1;
 	ch = (int) rx->buf[rx->tail];
-	rx->tail = (rx->tail + 1) & (_BV(UART_BUF_SIZE) - 1);
+	rx->tail = (rx->tail + 1) & (UART_BUF_SIZE - 1);
 	if (rx->tail == rx->head) rx->empty = 1;
 	return 0;
 }
@@ -72,7 +72,7 @@ static void uart_rx(void)
 		return ;
 	}
 	rx->buf[rx->head] = ch;
-	rx->head = (rx->head + 1) & (_BV(UART_BUF_SIZE) - 1);
+	rx->head = (rx->head + 1) & (UART_BUF_SIZE - 1);
 	posSemaSignal(rx->lock);
 	rx->empty = 0;
 }
@@ -90,7 +90,7 @@ void uart_init(void)
 	/* Enable the UARTs now */
 	UCSRB |= _BV(RXCIE) | _BV(RXEN) | _BV(TXEN);
 	UCSRA |= (USE_2X << U2X);
-	tx->lock = posSemaCreate(_BV(UART_BUF_SIZE));
+	tx->lock = posSemaCreate(UART_BUF_SIZE);
 	rx->lock = posSemaCreate(0);
 }
 

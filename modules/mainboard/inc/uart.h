@@ -13,8 +13,8 @@
 #endif
 
 #ifndef UART_BUF_SIZE
-/* 2^UART_BUF_SIZE will be the size of uart buf */
-#define UART_BUF_SIZE  5
+/* UART BUF SIZE has to be a power of 2 */
+#define UART_BUF_SIZE  32
 #endif
 
 #define uart_getchar() uart_getchar_timeout(INFINITE)
