@@ -10,10 +10,10 @@
 #define ENABLE_TXE_INTERRUPT  UCSRB |= 1 << UDRIE
 
 static struct {
-	uint8_t buf[UART_BUF_SIZE];
-	uint8_t head;
-	uint8_t tail;
-	uint8_t empty;
+	uint8_t buf[_BV(UART_BUF_SIZE)];
+	volatile uint8_t head;
+	volatile uint8_t tail;
+	volatile uint8_t empty;
 	POSSEMA_t lock;
 }ttx,*tx=&ttx,trx,*rx=&trx;
 
@@ -25,8 +25,7 @@ int uart_puts(const char *s) {
 
 int uart_putchar(uint8_t ch)
 {
-	if (posSemaWait(tx->lock, INFINITE) != E_OK)
-		return -1;
+	posSemaGet(tx->lock);
 	tx->buf[tx->head] = ch;
 	tx->head = (tx->head + 1) & (_BV(UART_BUF_SIZE) - 1);
 	ENABLE_TXE_INTERRUPT;
