@@ -1,3 +1,4 @@
+#include <string.h>
 #include <picoos.h>
 #include <xbee/api.h>
 #include <xbee/psock.h>
@@ -24,7 +25,9 @@ void rx_task (void * ignore)
 			posTaskSleep(MS(100));
 			continue;
 		}
-		dl_recv_frame(&ps, msg, POSCFG_MSG_BUFSIZE);
+		if (dl_recv_frame(&ps, msg, POSCFG_MSG_BUFSIZE) > 0) {
+			PORTB ^= _BV(PB0);
+		}
 	}
 }
 
@@ -39,13 +42,13 @@ void tx_task(void * ignore)
 	while (1) {
 		dl_tx_data(&ps, data, strlen(data));
 		posTaskSleep(MS(5000));
-		PORTB ^= _BV(PB0);
+		//PORTB ^= _BV(PB0);
 	}
 }
 
 void app_main(void * ignore)
 {
 	uart_init();
-	//posTaskCreate(rx_task, NULL, 4);
+	posTaskCreate(rx_task, NULL, 4);
 	posTaskCreate(tx_task, NULL, 5);
 }
