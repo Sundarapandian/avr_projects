@@ -28,6 +28,7 @@ void rx_task (void * ignore)
 		if (dl_recv_frame(&ps, msg, POSCFG_MSG_BUFSIZE) > 0) {
 			PORTB ^= _BV(PB0);
 		}
+		posMessageFree(msg);
 	}
 }
 
