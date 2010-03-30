@@ -1,7 +1,7 @@
 ########## ALL THE CONFIGURABLE PARAMETERS ###############
 
 #directories
-PRJ_DIR := $(TOP_DIR)/mainboard/tst
+PRJ_DIR := $(TOP_DIR)/../demo/rpnet
 DIR_CONFIG := $(PRJ_DIR)/cfg
 OUTPUT_DIR = $(PRJ_DIR)/build
 

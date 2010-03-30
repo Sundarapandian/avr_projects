@@ -3,7 +3,8 @@ include $(DIR_CONFIG)/config.mak
 # Define programs and commands.
 SHELL = sh
 CC = avr-gcc
-OBJCOPY = wine /mnt/sda5/Applications/WinAVR-20080430/bin/avr-objcopy
+OBJCOPY = avr-objcopy
+WOBJCOPY = wine /mnt/sda5/Applications/WinAVR-20080430/bin/avr-objcopy
 OBJDUMP = avr-objdump
 SIZE = avr-size
 AR = avr-ar rcs
@@ -44,7 +45,7 @@ $(OUTPUT_DIR)/bin/$(TARGET).hex: $(ELFTARGET)
 	@echo "     OBJCOPY   $@"
 	@$(OBJCOPY) -O ihex -R .eeprom -R .fuse -R .lock $< $@
 
-COFFCONVERT = $(OBJCOPY) --debugging
+COFFCONVERT = $(WOBJCOPY) --debugging
 COFFCONVERT += --change-section-address .data-0x800000
 COFFCONVERT += --change-section-address .bss-0x800000
 COFFCONVERT += --change-section-address .noinit-0x800000
