@@ -7,12 +7,13 @@
 # TARGET_ARCH	- gcc -mmcu= option with AVR device type
 # OBJECTS	- the objects in addition to the USBtiny objects
 # FLASH_CMD	- command to upload main.hex to flash
+# FUSES_CMD	- command to program the fuse bytes
 # STACK		- maximum stack size (optional)
 # FLASH		- flash size (optional)
 # SRAM		- SRAM size (optional)
 # SCHEM		- Postscript version of the schematic to be generated
 #
-# Copyright (C) 2006 Dick Streefland
+# Copyright 2006-2008 Dick Streefland
 #
 # This is free software, licensed under the terms of the GNU General
 # Public License as published by the Free Software Foundation.
@@ -47,8 +48,9 @@ disasm:		main.elf
 
 flash:		main.hex
 	$(FLASH_CMD)
-fuse:
-	$(FUSE_CMD)
+
+fuses:
+	$(FUSES_CMD)
 
 crc.o:		$(USBTINY)/crc.S $(USBTINY)/def.h usbtiny.h
 	$(COMPILE.c) $(USBTINY)/crc.S

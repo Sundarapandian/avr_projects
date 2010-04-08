@@ -1,7 +1,7 @@
 // ======================================================================
 // USBtiny Configuration
 //
-// Copyright (C) 2006 Dick Streefland
+// Copyright 2006-2008 Dick Streefland
 //
 // This is free software, licensed under the terms of the GNU General
 // Public License as published by the Free Software Foundation.
@@ -36,13 +36,12 @@
 #define	USBTINY_DEVICE_ID		0x0002	// IgorPlug-USB
 
 // The version of the device as a 16-bit number: 256*major + minor.
-#define	USBTINY_DEVICE_VERSION		0x103
+#define	USBTINY_DEVICE_VERSION		0x104
 
 // The following optional macros may be used as an identification of
 // your device. Undefine them when you run out of flash space.
 //#define	USBTINY_VENDOR_NAME		"Dick Streefland"
-//#define	USBTINY_DEVICE_NAME		"USBtiny IR/LCD"
-#define	USBTINY_DEVICE_NAME		"IR/LCD"
+#define	USBTINY_DEVICE_NAME		"USBtiny IR/LCD"
 #undef	USBTINY_SERIAL
 
 // Define the device class, subclass and protocol. Device class 0xff
@@ -69,6 +68,11 @@
 // You need this option to send data from the host to the device in
 // a control transfer.
 #define	USBTINY_CALLBACK_OUT		1
+
+// When this macro is defined as 1, an optimized CRC function is used
+// that calculates the CRC about twice as fast as the standard version,
+// but at the expense of 30 bytes of additional flash memory.
+#define	USBTINY_FAST_CRC		1
 
 // Set the macro USBTINY_ENDPOINT to 1 to add an additional endpoint,
 // according to the values of the three other macros.

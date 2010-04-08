@@ -50,23 +50,25 @@ configured at the top of the Makefile.
 Other USB projects
 ==================
 
-This software was inspired by two similar USB projects for the AVR:
+This software was inspired by two similar USB projects for the AVR,
+especially the second one:
 
   http://www.cesko.host.sk/IgorPlugUSB/IgorPlug-USB%20(AVR)_eng.htm
   http://www.obdev.at/products/avrusb/index.html
 
-My version has the advantage that you have more freedom over which I/O
-pins to use for the D+ and D- USB signals. You don't need to use bit 0
-for the D+ signal. The only restriction is that both signals should be
-on the same I/O port. When you select a pin for D+ that can also
-generate an interrupt, only two I/O pins are required. The pin-change
-interrupt is deliberately not used, so that it remains available for
-other uses.
-
-Another improvement is that the CRC calculation is faster, because it
-uses a lookup table. A bit-wise calculation turned out to be too slow
-for the USB controller in my laptop. For instance, the obdev code
-worked fine on my desktop computer, but not on my laptop.
+The IgorPlugUSB code and earlier versions of the obdev code had the
+restriction that the D+ signal must be connected to bit 0 of an I/O
+port, in addition to an interrupt input. That means that for devices
+like the ATtiny2313, three I/O pins are required to control the USB bus.
+One of the reasons I wrote USBtiny was to have more freedom over which
+I/O pins to use for the D+ and D- USB signals. The only restriction
+is that both signals should be on the same I/O port. When you select a
+pin for D+ that can also generate an interrupt, only two I/O pins are
+required. Later versions of the obdev code have also removed this
+restriction. The pin-change interrupt is deliberately not used, so
+that it remains available for other uses. Another improvement is an
+optional faster CRC calculation that uses a lookup table to calculate
+4 bits at a time.
 
 Apart from these advantages, I think that my code is more readable and
 easier to configure, but that impression may be caused by a mild form
@@ -74,13 +76,18 @@ of the NIH syndrome that I'm suffering from. In any case, I learned a
 lot about the USB protocol, and writing the interrupt handler was a
 nice puzzle.
 
+The USBtinyISP project is an AVR in-circuit programmer based on my ISP
+converter, and is available as a kit:
+
+  http://www.ladyada.net/make/usbtinyisp/
+
 
 Hardware
 ========
 
 The AVR must be clocked with an external 12 MHz crystal. For an
 ATtiny2313, this means that the low fuse byte must be reprogrammed,
-for instance to 0xff. I also recommend to enable the BOD circuit,
+for instance to 0xef. I also recommend to enable the BOD circuit,
 when available. For the ATtiny2313, this means programming the high
 fuse byte to 0xdb (BOD level is 2.7V).
 
@@ -91,8 +98,8 @@ which may be more convenient when you need to interface to 5V
 peripherals. According to the USB specification, a device should not
 be damaged by 5V signals. I've been running the AVR and USB bus at 5V,
 and haven't encounter any problems so far, but I have some reports
-of Viao laptops that do not work with 5V signals. In that case, you
-can reduce the voltage of the USB data signals by adding 3V6 zener
+of PCs and laptops that do not work with 5V signals. In that case,
+you can reduce the voltage of the USB data signals by adding 3V6 zener
 diodes from the data signals to ground.
 
 
@@ -106,14 +113,31 @@ port programmer. Because the most important parallel port signals are
 connected to the DB-25 connecter, the same hardware (with different
 firmware) could be used to control other parallel port devices. That
 is also the reason why I connected the ACK signal to the INT1 pin.
-I didn't bother to put capacitors on the crystal, but they are
-recommended for reliable operation. The software, the schematic and
-a Python test script can be found in the "spi" subdirectory.
+The software, the schematic and a Python test script can be found
+in the "spi" subdirectory.
 
-The circuit may be powered via the diode at pin 14 of the DB-25
-connector to enable reprograming the ATtiny2313 in-system. This
-requires an adaptor cable between another SPI programmer and a DB-25
-male connector with the following connections:
+My AVR parallel port programmer follows the "bsd" design from Brian
+Dean (http://www.bsdhome.com/avrdude/). For safety, I've used 1K
+series resistors in the output signals. The Atmel device is powered
+by the data lines D1-D3, via 220 Ohm resistors. D0 is used to control
+a LED. Here is an ASCII-art version of the schematic:
+
+DB25 male                          ATtiny2313
+---------                          ----------
+18 GND ----------------------+---- 10 GND
+ 2 D0  ---- 330 ---- LED ----+
+ 3 D1  ---- 220 ---+
+ 4 D2  ---- 220 ---+-------------- 20 VCC
+ 5 D3  ---- 220 ---+
+ 7 D5  ---- 1K -------------------  1 /RESET
+ 8 D6  ---- 1K ------------------- 19 SCK
+ 9 D7  ---- 1K ------------------- 17 MOSI
+10 ACK --------------------------- 18 MISO
+
+The USBtiny circuit may be powered via the diode at pin 14 of the
+DB-25 connector to enable reprograming the ATtiny2313 in-system.
+This requires an adaptor cable between another SPI programmer and
+a DB-25 male connector with the following connections:
 
   SPI  DB25
   ---  ----
@@ -130,10 +154,11 @@ AVR. This means that you can send a 32-bit SPI command in a single USB
 packet. In addition, you can read or write up to 255 bytes from/to
 flash or EEPROM in a single control transfer.
 
-The subdirectory "patches" contains a patch for avrdude-5.1 that adds
+The subdirectory "patches" contains a patch for avrdude-5.4 that adds
 support for controlling this SPI converter. The programmer name is
 "usbtiny". You can use the -B option or the "sck" command to specify
 the minimum SCK period in microseconds (range: 1..250, default: 10).
+Native support for USBtiny was added in avrdude version 5.5.
 
 
 USBtiny LIRC compatible IR receiver and LCD controller
@@ -153,13 +178,13 @@ setting the LCD_PRESENT macro in main.c to 0.
 
 I adopted the "IgorPlug-USB" protocol, so that the existing LIRC
 device driver "igorplugusb" could be used without modifications.
-Nevertheless, a patch for lirc-0.8.0 is included in the "patches"
-subdirectory, with the following modifications:
+Nevertheless, patches for lirc-0.8.0 and lirc-0.8.2 are included
+in the "patches" subdirectory, with the following modifications:
 1) An increase of the sample rate from 10 to 100 times per second.
    This is not required, but improves the responsiveness and repeat
    behavior for some remote controls.
 2) A fix from Reinhard Max to get correct gap timings.
-3) A compilation fix for the latest 2.6 Linux kernels.
+3) A compilation fix for the latest 2.6 Linux kernels (lirc-0.8.0).
 
 
 Tools

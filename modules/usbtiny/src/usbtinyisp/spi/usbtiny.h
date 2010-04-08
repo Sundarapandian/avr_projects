@@ -1,7 +1,7 @@
 // ======================================================================
 // USBtiny Configuration
 //
-// Copyright (C) 2006 Dick Streefland
+// Copyright 2006-2008 Dick Streefland
 //
 // This is free software, licensed under the terms of the GNU General
 // Public License as published by the Free Software Foundation.
@@ -12,7 +12,7 @@
 // bit numbers:
 #define	USBTINY_PORT			D
 #define	USBTINY_DPLUS			2
-#define	USBTINY_DMINUS			3
+#define	USBTINY_DMINUS			4
 
 // The D+ signal should be connected to an interrupt input to trigger an
 // interrupt at the start of a packet. When you use the same pin for the
@@ -32,8 +32,11 @@
 // www.voti.nl or www.mecanique.co.uk, or be naughty and use something
 // else, like for instance product ID 0x6666, which is registered as
 // "Prototype product Vendor ID".
-#define	USBTINY_VENDOR_ID		0x1781 // Adafruit Vendor ID
-#define	USBTINY_DEVICE_ID		0x0C9F // Adafruit Product ID #1 (from Mechanique)
+// The USBtinyISP project (http://www.ladyada.net/make/usbtinyisp/) has
+// allocated an official VID/PID pair for USBtiny. Since these IDs are
+// supported by avrdude since version 5.5, we use them here as well:
+#define	USBTINY_VENDOR_ID		0x1781
+#define	USBTINY_DEVICE_ID		0x0C9F
 
 // The version of the device as a 16-bit number: 256*major + minor.
 #define	USBTINY_DEVICE_VERSION		0x104
@@ -41,7 +44,7 @@
 // The following optional macros may be used as an identification of
 // your device. Undefine them when you run out of flash space.
 //#define	USBTINY_VENDOR_NAME		"Dick Streefland"
-#define	USBTINY_DEVICE_NAME		"USBtiny"
+#define	USBTINY_DEVICE_NAME		"USBtiny SPI"
 #undef	USBTINY_SERIAL
 
 // Define the device class, subclass and protocol. Device class 0xff
@@ -68,6 +71,11 @@
 // You need this option to send data from the host to the device in
 // a control transfer.
 #define	USBTINY_CALLBACK_OUT		1
+
+// When this macro is defined as 1, an optimized CRC function is used
+// that calculates the CRC about twice as fast as the standard version,
+// but at the expense of 30 bytes of additional flash memory.
+#define	USBTINY_FAST_CRC		0
 
 // Set the macro USBTINY_ENDPOINT to 1 to add an additional endpoint,
 // according to the values of the three other macros.

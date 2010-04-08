@@ -2,7 +2,7 @@
 # ======================================================================
 # check.py - Check section sizes and other constraints
 #
-# Copyright (C) 2006 Dick Streefland
+# Copyright 2006-2008 Dick Streefland
 #
 # This is free software, licensed under the terms of the GNU General
 # Public License as published by the Free Software Foundation.
@@ -23,6 +23,7 @@ if len(sys.argv) > 4:
 
 max_sram = ramsize - stacksize
 
+crc4tab = 0
 for line in os.popen('avr-objdump -ht ' + sys.argv[1]).readlines():
 	a = line.split()
 	if len(a) == 7:

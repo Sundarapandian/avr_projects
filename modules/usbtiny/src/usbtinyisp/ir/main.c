@@ -12,7 +12,7 @@
 // could also get rid of the additional endpoint (USBTINY_ENDPOINT).
 //
 // There are some IR protocols with very long packets length, such as
-// the "NEC" protocol (http://www.xs4all.nl/~sbp/knowledge/ir/nec.htm).
+// the "NEC" protocol (http://www.sbprojects.com/knowledge/ir/nec.htm).
 // This protocol uses 67 mark/space periods, which is too much for the
 // limited amount of RAM in the ATtiny2313. Simply truncating the
 // packet to the amount of available buffer space is not an option,
@@ -93,7 +93,7 @@
 //       epilog code may have to be adapted when a different compiler
 //       version allocates different registers.
 //
-// Copyright (C) 2006 Dick Streefland
+// Copyright 2006-2008 Dick Streefland
 //
 // This is free software, licensed under the terms of the GNU General
 // Public License as published by the Free Software Foundation.
@@ -156,11 +156,15 @@ static	struct			// IgorPlug-USB compatible data layout
 #define	MASK_RW		(1 << RW)
 #define	MASK_E		(1 << E)
 
+#ifndef	ICIE1
+#define	ICIE1		TICIE1
+#endif
+
 // ----------------------------------------------------------------------
 // Handler for timer1 input capture interrupt: edge on IR input
 // ----------------------------------------------------------------------
 __attribute__((signal,naked))			// interrupts are DISABLED
-extern	void	SIG_TIMER1_CAPT ( void )
+extern	void	SIG_INPUT_CAPTURE1 ( void )
 {
 	static	uint_t	prev;
 	uint_t		stamp;
@@ -233,7 +237,7 @@ extern	void	SIG_TIMER1_CAPT ( void )
 // Handler for timer1 output compare A interrupt: IR transmission timeout
 // ----------------------------------------------------------------------
 __attribute__((signal))				// interrupts are DISABLED
-extern	void	SIG_TIMER1_COMPA ( void )
+extern	void	SIG_OUTPUT_COMPARE1A ( void )
 {
 	TIMSK = 0;				// disable both IR interrupts
 	sei();					// allow USB interrupt
