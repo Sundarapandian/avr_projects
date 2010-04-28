@@ -1,0 +1,3 @@
+elements-dir ./resources
+schematics irboard.sch
+output-name irboard
