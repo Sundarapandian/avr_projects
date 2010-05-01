@@ -367,7 +367,7 @@
  * be included into the pico]OS kernel. Note that also
  * ::POSCFG_FEATURE_SEMAPHORES must be set to 1.
  */
-#define POSCFG_FEATURE_SEMAWAIT      1
+#define POSCFG_FEATURE_SEMAWAIT      0
 
 /** Include mutex functions.
  * If this definition is set to 1, the mutex functions are
@@ -393,7 +393,7 @@
  * If this definition is set to 1, the function ::posTaskGetCurrent will
  * be included into the pico]OS kernel.
  */
-#define POSCFG_FEATURE_GETTASK       1
+#define POSCFG_FEATURE_GETTASK       0
 
 /** Include function ::posTaskUnused.
  * If this definition is set to 1, the function ::posTaskUnused will
@@ -430,7 +430,7 @@
  * If this definition is set to 1, the timer functions are
  * added to the user API.
  */
-#define POSCFG_FEATURE_TIMER         1
+#define POSCFG_FEATURE_TIMER         0
 
 /** Include function ::posTimerDestroy.
  * If this definition is set to 1, the function ::posTimerDestroy will

@@ -13,7 +13,7 @@
 
 .TRACE              ; Activate micro trace
 
-.PLOT V(PA0) V(PB3)
+;.PLOT V(PA5) V(PD7) V(DUMMY)
 ; Following lines are optional; if not included
 ; exactly these values are taken by default
 ; ------------------------------------------------------------
@@ -24,6 +24,7 @@
 ; Micro nodes: RESET, AREF, PA0-PA7, PB0-PB7, PC0-PC7, PD0-PD7, ACO, TIM1OVF
 ; Define here the hardware around the micro
 ; ------------------------------------------------------------
+Xu1 ND2 PD7 PA5 node_1
 
-
+.PLOT V(PA5) V(PD7) V(node_1)
 

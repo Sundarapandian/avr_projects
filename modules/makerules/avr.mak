@@ -4,7 +4,7 @@ include $(DIR_CONFIG)/config.mak
 SHELL = sh
 CC = avr-gcc
 OBJCOPY = avr-objcopy
-WOBJCOPY = wine /mnt/sda5/Applications/WinAVR-20080430/bin/avr-objcopy
+WOBJCOPY = wine /mnt/sdb1/ddata/Projects/Hobby/avr/avr-objcopy
 OBJDUMP = avr-objdump
 SIZE = avr-size
 AR = avr-ar rcs

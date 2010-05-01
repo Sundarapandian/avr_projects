@@ -33,7 +33,7 @@ F_CPU = 8000000
 BAUDRATES = -DBAUD=9600UL
 
 # Build type RELEASE/DEBUG
-BUILD = DEBUG
+BUILD = RELEASE
 
 # Optimization level, can be [0, 1, 2, 3, s]. 
 #     0 = turn off optimization. s = optimize for size.
