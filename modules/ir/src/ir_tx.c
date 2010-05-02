@@ -135,7 +135,7 @@ static uint8_t prepare_samsung(uint8_t addr, uint8_t cmd)
 	val1 = addr | (addr << 8);
 	val2 = (~cmd << 8) | cmd;
 	txd->data[0] = 0xFF;
-	for (i = 0, j = 16, val = val1; i < 32; i ++, val >>= 1) {
+	for (i = 0, j = 16, val = val1; i < 33; i ++, val >>= 1) {
 		if (i == 16) val = val2;
 		txd->data[j>>3] |= _BV(j&7);
 		j += _BV(1+(val&1));
