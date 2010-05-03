@@ -89,8 +89,8 @@ AINCLUDES = .
 
 # Distinguish between build modes
 ifeq '$(BUILD)' 'DEBUG'
-  CFLAGS   += -O0 -g
-  AFLAGS   += -g
+  CFLAGS   += -O0 -gstabs
+  AFLAGS   += -gstabs
   CDEFINES += _DBG
   ADEFINES += _DBG
 else
