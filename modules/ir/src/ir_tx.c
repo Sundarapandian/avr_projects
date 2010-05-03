@@ -25,7 +25,8 @@ struct tx_data {
 	POSSEMA_t lock;
 }tx_data, *txd=&tx_data;
 
-static POSSEMA_t sync;
+/* Sync */
+POSSEMA_t sync;
 /**
  * Data handlers for various protocols
  **/
@@ -144,8 +145,8 @@ static uint8_t prepare_samsung(uint8_t addr, uint8_t cmd)
 }
 
 /**
- * Function that transmits given 5-bit address
- * @addr and 6-bit command @cmd to the IR LEDs
+ * Function that transmits given 8-bit address
+ * @addr and 8-bit command @cmd to the IR LEDs
  * using Sony SIRC protocl using a carrier
  * frequency of 36KHz.
  **/
