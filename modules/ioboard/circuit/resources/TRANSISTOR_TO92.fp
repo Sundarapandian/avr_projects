@@ -1,0 +1,1 @@
+../../../../resources/footprints/TRANSISTOR_TO92.fp
