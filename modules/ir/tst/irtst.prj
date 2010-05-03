@@ -9,7 +9,7 @@
 .TOOLCHAIN "GCC"
 .GCCMAKE   "Makefile"
 .TARGET    "irtst.hex"
-.SOURCE    "irtest.c"
+.SOURCE    "irtest.c" "ir_tx.c"
 
 .TRACE              ; Activate micro trace
 
