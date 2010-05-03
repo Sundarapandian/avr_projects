@@ -1,0 +1,1 @@
+../../../../resources/footprints/RELAY_T73.fp
