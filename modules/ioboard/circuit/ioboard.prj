@@ -1,3 +1,3 @@
-elements-dir ./symbols
+elements-dir ./resources
 schematics ioboard01.sch ioboard02.sch
 output-name ioboard

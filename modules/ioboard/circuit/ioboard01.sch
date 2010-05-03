@@ -365,14 +365,14 @@ C 54600 48300 1 0 0 tblock-3.sym
 T 55500 48750 5 10 1 1 0 0 1
 refdes=TB2
 T 54600 48400 5 10 0 1 0 0 1
-footprint=TBLOCK3
+footprint=3terminal_screw_block
 }
 C 54600 49900 1 0 0 tblock-3.sym
 {
 T 55500 50350 5 10 1 1 0 0 1
 refdes=TB1
 T 54600 50000 5 10 0 1 0 0 1
-footprint=TBLOCK3
+footprint=3terminal_screw_block
 }
 N 54600 50700 53700 50700 4
 {

@@ -136,7 +136,7 @@ C 51200 46700 1 0 0 tblock-3.sym
 T 52250 47100 5 10 1 1 90 0 1
 refdes=TB3
 T 51200 46800 5 10 0 1 0 0 1
-footprint=TBLOCK3
+footprint=3terminal_screw_block
 }
 C 50900 46500 1 0 0 gnd-1.sym
 C 44200 46600 1 0 0 jumper_2x2.sym
@@ -222,7 +222,7 @@ device=SPST
 T 39000 45500 5 10 1 1 0 0 1
 refdes=S1
 T 38700 45200 5 10 0 1 0 0 1
-footprint=PUSHBUTTON
+footprint=push_button.fp
 }
 C 38600 43100 1 0 0 switch-spst-1.sym
 {
@@ -231,7 +231,7 @@ device=SPST
 T 38900 43400 5 10 1 1 0 0 1
 refdes=S2
 T 38600 43100 5 10 0 1 0 0 1
-footprint=PUSHBUTTON
+footprint=push_button.fp
 }
 C 38600 41000 1 0 0 switch-spst-1.sym
 {
@@ -240,7 +240,7 @@ device=SPST
 T 38900 41300 5 10 1 1 0 0 1
 refdes=S3
 T 38600 41000 5 10 0 1 0 0 1
-footprint=PUSHBUTTON
+footprint=push_button.fp
 }
 C 38600 38900 1 0 0 switch-spst-1.sym
 {
@@ -249,7 +249,7 @@ device=SPST
 T 38900 39200 5 10 1 1 0 0 1
 refdes=S4
 T 38600 38900 5 10 0 1 0 0 1
-footprint=PUSHBUTTON
+footprint=push_button.fp
 }
 N 38700 45200 38200 45200 4
 N 38200 45200 38200 37700 4
