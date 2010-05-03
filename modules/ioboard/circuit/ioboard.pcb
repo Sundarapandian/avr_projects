@@ -1,5 +1,5 @@
 # release: pcb.x 20080202
-# date:    Mon May  3 22:17:59 2010
+# date:    Mon May  3 22:49:22 2010
 # user:    sundar (Sundarapandian Andithevar,,,)
 # host:    slax.example.net
 
@@ -1673,6 +1673,19 @@ Element["" "push_button.fp" "S4" "unknown" 176000 115500 0 0 2 100 ""]
 	ElementLine [-16000 16000 16000 16000 1000]
 
 	)
+
+Element["" "ACY300" "R7" "10K" 113000 382500 4500 -17000 1 100 ""]
+(
+	Pin[0 7500 8500 3000 9100 4000 "1" "1" "thermal(0X)"]
+	Pin[0 -22500 8500 5000 9100 4000 "2" "2" ""]
+	ElementLine [-2500 0 2500 0 1000]
+	ElementLine [2500 -15000 2500 0 1000]
+	ElementLine [-2500 -15000 2500 -15000 1000]
+	ElementLine [-2500 -15000 -2500 0 1000]
+	ElementLine [0 -22500 0 -15000 1000]
+	ElementLine [0 0 0 7500 1000]
+
+	)
 Layer(1 "solder")
 (
 	Line[92500 154000 106500 168000 3000 2000 "clearline"]
@@ -2106,6 +2119,7 @@ NetList()
 		Connect("Q11-E")
 		Connect("Q21-E")
 		Connect("Q31-E")
+		Connect("R7-1")
 		Connect("R42-2")
 		Connect("R52-2")
 		Connect("R62-2")
@@ -2301,6 +2315,7 @@ NetList()
 	Net("unnamed_net17" "(unknown)")
 	(
 		Connect("J1-4")
+		Connect("R7-2")
 		Connect("U1-11")
 	)
 	Net("unnamed_net18" "(unknown)")
