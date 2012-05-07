@@ -156,11 +156,7 @@
 
 #  define TIMER_INTERRUPT_ENABLE_BIT   OCIE1A
 
-#if	defined(__AVR_ATmega328P__)
 #define TIMER_INTERRUPT_VECTOR TIMER1_COMPA_vect
-#else
-#define TIMER_INTERRUPT_VECTOR SIG_OUTPUT_COMPARE1A
-#endif
 
 #else
 

@@ -83,3 +83,6 @@ clean:
 	@echo Cleaning work area
 	-@rm -f $(LIBTARGET) $(ELFTARGET) $(OBJS) $(CLEAN_LIST) $(OBJDIR)/*
 
+distclean:
+	@echo Cleaning build area
+	-@rm -Rf build

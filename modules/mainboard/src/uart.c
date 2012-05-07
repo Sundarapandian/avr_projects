@@ -41,7 +41,7 @@ static void usart_txrdy(void)
 	if (tx->tail == tx->head) DISABLE_TXE_INTERRUPT;
 	posSemaSignal(tx->lock);
 }
-PICOOS_SIGNAL(SIG_USART_DATA, usart_txrdy)
+PICOOS_SIGNAL(USART_UDRE_vect, usart_txrdy)
 
 int uart_gets(char *s)
 {
@@ -76,7 +76,7 @@ static void uart_rx(void)
 	posSemaSignal(rx->lock);
 	if (rx->head == rx->tail) rx->full = 1;
 }
-PICOOS_SIGNAL(SIG_USART_RECV, uart_rx)
+PICOOS_SIGNAL(USART_RXC_vect, uart_rx)
 
 /**
  * Initialize the UART and create the necessary sync.
