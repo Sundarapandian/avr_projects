@@ -15,6 +15,6 @@ FUSES_CMD	= avrdude -pt2313 -U hfuse:w:0xdb:m -U lfuse:w:0xef:m
 STACK		= 32
 FLASH		= 2048
 SRAM		= 128
-SCHEM		= spi.ps
+SCHEM		= uart.ps
 
 include $(USBTINY)/common.mk

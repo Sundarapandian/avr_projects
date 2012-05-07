@@ -35,16 +35,16 @@
 // The USBtinyISP project (http://www.ladyada.net/make/usbtinyisp/) has
 // allocated an official VID/PID pair for USBtiny. Since these IDs are
 // supported by avrdude since version 5.5, we use them here as well:
-#define	USBTINY_VENDOR_ID		0x1781
-#define	USBTINY_DEVICE_ID		0x0C9F
+#define	USBTINY_VENDOR_ID		0x0403
+#define	USBTINY_DEVICE_ID		0x6001
 
 // The version of the device as a 16-bit number: 256*major + minor.
-#define	USBTINY_DEVICE_VERSION		0x104
+#define	USBTINY_DEVICE_VERSION		0x600
 
 // The following optional macros may be used as an identification of
 // your device. Undefine them when you run out of flash space.
 //#define	USBTINY_VENDOR_NAME		"Dick Streefland"
-#define	USBTINY_DEVICE_NAME		"USBtiny SPI"
+#define	USBTINY_DEVICE_NAME		"FTDI UART-USB"
 #undef	USBTINY_SERIAL
 
 // Define the device class, subclass and protocol. Device class 0xff

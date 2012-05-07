@@ -1,5 +1,5 @@
 // ======================================================================
-// Control a parallel port AVR programmer (avrdude type "bsd") via USB.
+// Create a serial port to USB adapter simulating a fake FTDI chip.
 //
 // Copyright 2006-2008 Dick Streefland
 //
@@ -7,6 +7,8 @@
 // Public License as published by the Free Software Foundation.
 // ======================================================================
 
+
+/* TODO: Implement Flow control CXONOFF CCTSRTS */
 #include <avr/io.h>
 #include "usb.h"
 
@@ -29,29 +31,7 @@ enum
 	USBTINY_EEPROM_WRITE,	// write eeprom (wIndex:address, wValue:timeout)
 };
 
-// ----------------------------------------------------------------------
-// Programmer output pins:
-//	LED	PB0	(D0)
-//	VCC	PB1	(D1)
-//	VCC	PB2	(D2)
-//	VCC	PB3	(D3)
-//	RESET	PB5	(D5)
-//	SCK	PB6	(D6)
-//	MOSI	PB7	(D7)
-// ----------------------------------------------------------------------
-#define	PORT		PORTB
-#define	DDR		DDRB
-#define	POWER_MASK	0x0f
-#define	RESET_MASK	(1 << 5)
-#define	SCK_MASK	(1 << 6)
-#define	MOSI_MASK	(1 << 7)
 
-// ----------------------------------------------------------------------
-// Programmer input pins:
-//	MISO	PD3	(ACK)
-// ----------------------------------------------------------------------
-#define	PIN		PIND
-#define	MISO_MASK	(1 << 3)
 
 // ----------------------------------------------------------------------
 // Local data
