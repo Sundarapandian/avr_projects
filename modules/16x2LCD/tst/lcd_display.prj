@@ -10,7 +10,7 @@
 .GCCPATH   "E:\Applications\WinAVR-20100110"
 .GCCMAKE   "vmlab.mak"
 .TARGET    "lcdtest.hex"
-.SOURCE    "lcdtest.c"
+.SOURCE    "lcd_test.c"
 .CLICKTOOL "make -f vmlab.mak clean"
 
 .TRACE              ; Activate micro trace

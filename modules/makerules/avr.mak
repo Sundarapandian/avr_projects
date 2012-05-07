@@ -45,7 +45,7 @@ $(OUTPUT_DIR)/bin/$(TARGET).hex: $(ELFTARGET)
 	@echo "     OBJCOPY   $@"
 	@$(OBJCOPY) -O ihex -R .eeprom -R .fuse -R .lock $< $@
 
-COFFCONVERT = $(WOBJCOPY) --debugging
+COFFCONVERT = $(OBJCOPY) --debugging
 COFFCONVERT += --change-section-address .data-0x800000
 COFFCONVERT += --change-section-address .bss-0x800000
 COFFCONVERT += --change-section-address .noinit-0x800000
