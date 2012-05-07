@@ -139,41 +139,73 @@ endif
 # Make subdirectories
 ifneq '$(strip $(DIR_OUTPUT))' ''
 $(DIR_OUTPUT):
+ifeq ($(SHELL), cmd.exe)
+	@-mkdir $(subst /,\\,$@)
+else
 	@-$(MKDIR) $@
+endif
 endif
 ifneq '$(strip $(DIR_OBJB))' ''
 ifneq '$(DIR_OBJB)' '$(DIR_OUTPUT)'
 $(DIR_OBJB): | $(DIR_OUTPUT)
+ifeq ($(SHELL), cmd.exe)
+	@-mkdir $(subst /,\\,$@)
+else
 	@-$(MKDIR) $@
+endif
 endif
 endif
 ifneq '$(strip $(DIR_OBJP))' ''
 $(DIR_OBJP): | $(DIR_OBJB)
+ifeq ($(SHELL), cmd.exe)
+	@-mkdir $(subst /,\\,$@)
+else
 	@-$(MKDIR) $@
+endif
 endif
 ifneq '$(strip $(DIR_OBJT))' ''
 $(DIR_OBJT): | $(DIR_OBJP)
+ifeq ($(SHELL), cmd.exe)
+	@-mkdir $(subst /,\\,$@)
+else
 	@-$(MKDIR) $@
 endif
+endif
 $(DIR_OBJ): | $(DIR_OBJT) $(DIR_OBJP)
+ifeq ($(SHELL), cmd.exe)
+	@-mkdir $(subst /,\\,$@)
+else
 	@-$(MKDIR) $@
+endif
 #
 ifneq '$(DIR_LIB)' '$(DIR_OBJ)'
 ifneq '$(DIR_LIBB)' '$(DIR_OUTPUT)'
 ifneq '$(strip $(DIR_LIBB))' ''
 $(DIR_LIBB): | $(DIR_OUTPUT)
+ifeq ($(SHELL), cmd.exe)
+	@-mkdir $(subst /,\\,$@)
+else
 	@-$(MKDIR) $@
+endif
 endif
 endif
 ifneq '$(DIR_LIBP)' '$(DIR_OBJP)'
 ifneq '$(strip $(DIR_LIBP))' ''
 $(DIR_LIBP): | $(DIR_LIBB)
+ifeq ($(SHELL), cmd.exe)
+	@-mkdir $(subst /,\\,$@)
+else
 	@-$(MKDIR) $@
+endif
 endif
 endif
 ifneq '$(DIR_LIB)' '$(DIR_OBJP)'
 $(DIR_LIB): | $(DIR_LIBP)
+ifeq ($(SHELL), cmd.exe)
+	@-mkdir $(subst /,\\,$@)
+else
 	@-$(MKDIR) $@
+endif
 endif
 endif
 #
@@ -181,17 +213,29 @@ ifneq '$(DIR_OUT)' '$(DIR_LIB)'
 ifneq '$(DIR_OUTB)' '$(DIR_OUTPUT)'
 ifneq '$(strip $(DIR_OUTB))' ''
 $(DIR_OUTB): | $(DIR_OUTPUT)
+ifeq ($(SHELL), cmd.exe)
+	@-mkdir $(subst /,\\,$@)
+else
 	@-$(MKDIR) $@
+endif
 endif
 endif
 ifneq '$(DIR_OUTP)' '$(DIR_OBJP)'
 ifneq '$(strip $(DIR_OUTP))' ''
 $(DIR_OUTP): | $(DIR_OUTB)
+ifeq ($(SHELL), cmd.exe)
+	@-mkdir $(subst /,\\,$@)
+else
 	@-$(MKDIR) $@
+endif
 endif
 endif
 $(DIR_OUT): | $(DIR_OUTP)
+ifeq ($(SHELL), cmd.exe)
+	@-mkdir $(subst /,\\,$@)
+else
 	@-$(MKDIR) $@
+endif
 endif
 
 # ---------------------------------------------------------------------------
@@ -364,3 +408,4 @@ $(DIR_OBJ)/%$(EXT_OBJ) : $(DIR_SRC8)%$(EXT_ASM) $(COMMONDEP) | $(DIR_OBJ)
 endif
 
 endif
+

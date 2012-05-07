@@ -2,7 +2,7 @@ OBJDIR := $(OUTPUT_DIR)/$(TARGET)
 
 VPATH = $(SRC_DIRS)
 
-CFLAGS += -I$(TOP_DIR)/$(TARGET)/inc
+CFLAGS += -I$(TOP_DIR)/$(TARGET)/inc $(EXTRA_CFLAGS)
 # Define all object files.
 OBJ = $(SRC:%.c=$(OBJDIR)/%.o) $(CXXSRC:%.cpp=$(OBJDIR)/%.o) $(ASRC:%.S=$(OBJDIR)/%.o)
 
@@ -65,24 +65,41 @@ $(OBJDIR)/%.i : %.c
 $(OBJDIR):
 	@echo
 	@echo "     MKDIR      $@"
-	@mkdir -p $(OBJDIR)
+ifeq ($(SHELL), cmd.exe)
+	@mkdir $(subst /,\\,$(OBJDIR))
+else
+	@mkdir -p $(OBJDIR) 2>/dev/null
+endif
 
 $(OUTPUT_DIR)/lib:
 	@echo
 	@echo "     MKDIR      $@"
-	@mkdir -p $(OUTPUT_DIR)/lib 2> /dev/null
+ifeq ($(SHELL), cmd.exe)
+	@mkdir $(subst /,\\,$(OUTPUT_DIR))\lib
+else
+	@mkdir -p $(OUTPUT_DIR)/lib 2>/dev/null
+endif
 
 $(OUTPUT_DIR)/bin:
 	@echo
 	@echo "     MKDIR      $@"
+ifeq ($(SHELL), cmd.exe)
+	@mkdir $(subst /,\\,$(OUTPUT_DIR))\bin
+else
 	@mkdir -p $(OUTPUT_DIR)/bin 2>/dev/null
+endif
 
+ifeq ($(SHELL), cmd.exe)
+$(shell mkdir $(subst /,\\,$(OBJDIR)))
+else
 $(shell mkdir $(OBJDIR) 2>/dev/null)
+endif
 
 clean:
 	@echo Cleaning work area
-	-@rm -f $(LIBTARGET) $(ELFTARGET) $(OBJS) $(CLEAN_LIST) $(OBJDIR)/*
+	-@rm -Rf $(LIBTARGET) $(ELFTARGET) $(OBJS) $(CLEAN_LIST) $(OBJDIR)/*
 
 distclean:
-	@echo Cleaning build area
+	@echo Removing all build files
 	-@rm -Rf build
+
