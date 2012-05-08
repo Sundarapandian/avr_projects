@@ -29,6 +29,8 @@
 *.ly1
 *.out
 *.exe
+*.dat
+*.cof
 
 # generated circuit files
 *.*-

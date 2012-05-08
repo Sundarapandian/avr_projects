@@ -1,4 +1,6 @@
-TOP_DIR := $(shell readlink -f ../..)
+TOP_DIR_WIN := $(subst \,/,$(shell pwd))/../..
+TOP_DIR := $(subst //,/,$(TOP_DIR_WIN))
+#TOP_DIR := $(shell readlink -f ../..)
 SRC = mbtest.c
 TARGET = mbtest
 TYPE := hex

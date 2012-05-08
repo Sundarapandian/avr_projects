@@ -1,0 +1,31 @@
+; ************************************************************
+; PROJECT: ATMEGA-32 MAINBOARD
+; AUTHOR: SUNDARAPANDIAN A
+; ************************************************************
+
+; Micro + software running
+; ------------------------------------------------------------
+.MICRO "ATmega32"
+.TOOLCHAIN "GCC"
+.GCCPATH   "E:\Applications\WinAVR-20100110"
+.GCCMAKE   "vmlab.mak"
+.TARGET    "mbtest.hex"
+.SOURCE    "mbtest.c"
+.CLICKTOOL "make -f vmlab.mak clean"
+
+.TRACE              ; Activate micro trace
+.STATS
+
+; Following lines are optional; if not included
+; exactly these values are taken by default
+; ------------------------------------------------------------
+.POWER VDD=5 VSS=0  ; Power nodes
+.CLOCK 8meg         ; Micro clock
+.STORE 250m         ; Trace (micro+signals) storage time
+
+; Micro nodes: RESET, AREF, PA0-PA7, PB0-PB7, PC0-PC7, PD0-PD7, ACO, TIM1OVF
+; Define here the hardware around the micro
+; ------------------------------------------------------------
+Xmbtest TTY(9600 8) PD0 PD1
+D1 VDD PB0
+

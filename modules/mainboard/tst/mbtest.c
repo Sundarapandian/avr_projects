@@ -2,6 +2,14 @@
 #include <string.h>
 #include <avr/io.h>
 
+#ifdef SIMULATION
+#define UART_DELAY    150
+#define BLINK_DELAY   30
+#else
+#define UART_DELAY    5000
+#define BLINK_DELAY   2000
+#endif
+
 void led_blink_task(void *ignore)
 {
 	/* For RED LED */
@@ -11,7 +19,7 @@ void led_blink_task(void *ignore)
 	/* Blink it every 2 seconds */
 	while (1) {
 		PORTB ^= _BV(PB0);
-		posTaskSleep(MS(2000));
+		posTaskSleep(MS(BLINK_DELAY));
 	}
 }
 
@@ -21,7 +29,7 @@ void uart_tx_test(void * ignore)
 {
 	while (1) {
 		uart_puts(uart_buf);
-		posTaskSleep(MS(5000));
+		posTaskSleep(MS(UART_DELAY));
 	}
 }
 
