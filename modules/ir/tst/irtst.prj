@@ -1,15 +1,16 @@
 ; ************************************************************
-; PROJECT:
-; AUTHOR:
+; PROJECT: INFRA-RED CODE GENERATOR
+; AUTHOR: SUNDARAPANDIAN A
 ; ************************************************************
 
 ; Micro + software running
 ; ------------------------------------------------------------
 .MICRO "ATmega32"
 .TOOLCHAIN "GCC"
-.GCCMAKE   "Makefile"
-.TARGET    "irtst.hex"
-.SOURCE    "irtest.c" "ir_tx.c"
+.GCCPATH   "E:\Applications\WinAVR-20100110"
+.GCCMAKE   "vmlab.mak"
+.TARGET    "irtest.hex"
+.SOURCE    "irtest.c"
 
 .TRACE              ; Activate micro trace
 
@@ -27,4 +28,5 @@
 Xu1 ND2 PD7 PA5 node_1
 
 .PLOT V(PA5) V(PD7) V(node_1)
+
 
