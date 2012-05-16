@@ -11,7 +11,7 @@
 #define LCD_DISPLAY_CURSOR         _BV(1)
 #define LCD_DISPLAY_CURSOR_BLINK   _BV(0)
 
-#define LCD_CMD_CLRSCR             _BV(1)
+#define LCD_CMD_CLRSCR             _BV(0)
 
 #define LCD_CMD_ENTRY_MODE_SET     _BV(2)
 #define LCD_ENTRY_MODE_INCREMENT   _BV(1)

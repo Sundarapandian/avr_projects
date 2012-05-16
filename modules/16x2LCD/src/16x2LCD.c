@@ -10,7 +10,7 @@ static void LCD_send_data(unsigned char ch, char cmd)
 	PORTA &= ~RDnWR;
 	PORTA |= ENABLE;
 	PORTC = (unsigned char) (ch & 0xFF);
-	DELAY(10);
+	posTaskSleep(MS(2));
 	PORTA &= ~ENABLE;
 }
 
