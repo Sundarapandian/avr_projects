@@ -1,0 +1,47 @@
+; ************************************************************
+; PROJECT:
+; AUTHOR:
+; ************************************************************
+
+; Micro + software running
+; ------------------------------------------------------------
+.MICRO "ATmega32"
+.TOOLCHAIN "GCC"
+.GCCPATH   "E:\Applications\WinAVR-20100110"
+.GCCMAKE   "vmlab.mak"
+.TARGET    "acspeedtst.hex"
+.SOURCE    "acspee~1.c"
+.CLICKTOOL "make -f vmlab.mak clean"
+
+.TRACE              ; Activate micro trace
+.STATS
+
+; Following lines are optional; if not included
+; exactly these values are taken by default
+; ------------------------------------------------------------
+.POWER VDD=5 VSS=0  ; Power nodes
+.CLOCK 8meg         ; Micro clock
+.STORE 550m         ; Trace (micro+signals) storage time
+.PLOT V(PB2) V(PB0)
+
+; Micro nodes: RESET, AREF, PA0-PA7, PB0-PB7, PC0-PC7, PD0-PD7, ACO, TIM1OVF
+; Define here the hardware around the micro
+; ------------------------------------------------------------
+Rone VDD    RefPt 10K
+Rtwo RefPt  VSS   200
+Rref RefPt  PB3   1
+Rser Ainp   PB2   10K
+Rdow PB2    VSS   2K
+Vsin Ainp   VSS   sin(0 12 50)
+Rpdn PB0    GND   10K
+
+
+
+
+
+
+
+
+
+
+
