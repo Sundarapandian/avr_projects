@@ -62,11 +62,14 @@ ifeq '$(strip $(basename $(notdir $(MAKESHELL))))' 'cmd'
 DOS += 2
 endif
 endif
+
+ifneq '$(strip $(DOS))' ''
 ifeq '$(suffix $(SHELL))' '.exe'
 DOS += 3
 endif
 ifeq '$(suffix $(SHELL))' '.com'
 DOS += 3
+endif
 endif
 
 ifeq '$(strip $(DOS))' ''
